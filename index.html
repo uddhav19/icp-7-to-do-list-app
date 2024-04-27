@@ -52,11 +52,19 @@
 </div>
 
     <script>
-        const todolist = [] 
+        let todolist = [] 
+
+        
+        const storage = localStorage.getItem("todolist")
+        if(storage){
+            todolist=JSON.parse(storage)
+            show()
+        }
 
         function add() {
            const inputElement = document.getElementById('input')
            todolist.push(inputElement.value)
+           localStorage.setItem("todolist", JSON.stringify(todolist))
            inputElement.value = ""
            show()
 
